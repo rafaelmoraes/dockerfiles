@@ -1,0 +1,12 @@
+"*":
+  core:
+    autoHideMenuBar: true
+    automaticallyUpdate: false
+    themes: [
+      "one-light-ui"
+      "solarized-light-syntax"
+    ]
+  editor:
+    fontFamily: "Roboto Mono for Powerline, Menlo, Consolas, DejaVu Sans Mono, monospace"
+    lineHeight: 1.3
+    showIndentGuide: true

@@ -61,6 +61,8 @@ RUN apt-get update && apt-get install -y \
 	--no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 
+# Configure atom
+RUN sh -c 'mkdir /root/.atom'
 RUN curl -o /root/.atom/config.cson \
   https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/atom/config.cson
 

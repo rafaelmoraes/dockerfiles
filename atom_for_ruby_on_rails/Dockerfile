@@ -1,4 +1,4 @@
-FROM atom:latest
+FROM rmoraes/atom:v1
 
 # AUTHOR: Rafael Moraes <roliveira.moraes@gmail.com>
 # DESCRIPTION: Create a container with a Atom editor with support to develop on Ruby On Rails

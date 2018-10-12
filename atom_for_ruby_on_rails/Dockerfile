@@ -1,4 +1,6 @@
 FROM rmoraes/atom:v1
+# URL of base image dockerfile
+# https://github.com/rafaelmoraes/dockerfiles/tree/master/atom
 
 # AUTHOR: Rafael Moraes <roliveira.moraes@gmail.com>
 # DESCRIPTION: Create a container with a Atom editor with support to develop on Ruby On Rails

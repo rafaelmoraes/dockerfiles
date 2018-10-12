@@ -7,7 +7,7 @@ FROM atom:latest
 #   wget https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/atom/Dockerfile
 #
 #   # Build the image
-#   docker build -t atom_for_rails .
+#   docker build -t <image_name> .
 #
 #   # Maybe you need run 'xhost local:root' before run the container
 #
@@ -16,7 +16,7 @@ FROM atom:latest
 #     -v `pwd`:/development:rw \
 #     -v /tmp/.X11-unix:/tmp/.X11-unix \
 #     -w /development \
-#     -e DISPLAY=unix$DISPLAY atom_for_rails
+#     -e DISPLAY=unix$DISPLAY <image_name>
 #
 
 LABEL maintainer="Rafael Moraes <roliveira.moraes@gmail.com>"
@@ -40,7 +40,8 @@ COPY .ruby-version /tmp
 COPY . /tmp/app
 
 # Install rails
-RUN curl -o /tmp/app/install_rails.sh https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_rails.sh
+RUN curl -o /tmp/app/install_rails.sh \
+    https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh
 RUN su -c 'chmod +x /tmp/app/install_rails.sh && cd /tmp/app && ./install_rails.sh'
 
 # Maintains bash history

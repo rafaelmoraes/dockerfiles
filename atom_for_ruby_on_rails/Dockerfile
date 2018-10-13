@@ -48,7 +48,10 @@ RUN su -c 'chmod +x /tmp/app/install_rails.sh && cd /tmp/app && ./install_rails.
 
 # Maintains bash history
 RUN su -c 'echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc'
-RUN su -c 'echo "cd $(pwd)" >> ~/.bashrc'
+RUN su -c 'echo "cd /development" >> ~/.bashrc'
+
+# Fix rubocop path to atom extension
+RUN su -c 'ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop'
 
 #Cleanup
 RUN su -c 'rm -rf /var/lib/apt/lists/*'

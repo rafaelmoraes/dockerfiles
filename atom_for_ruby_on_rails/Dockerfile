@@ -41,14 +41,14 @@ RUN apm install \
 COPY .ruby-version /tmp
 COPY . /tmp/app
 
+# Maintains bash history
+RUN su -c 'echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc'
+RUN su -c 'echo "cd /development" >> ~/.bashrc'
+
 # Install rails
 RUN curl -o /tmp/app/install_rails.sh \
     https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh
 RUN su -c 'chmod +x /tmp/app/install_rails.sh && cd /tmp/app && ./install_rails.sh'
-
-# Maintains bash history
-RUN su -c 'echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc'
-RUN su -c 'echo "cd /development" >> ~/.bashrc'
 
 # Fix rubocop path to atom extension
 RUN su -c 'ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop'

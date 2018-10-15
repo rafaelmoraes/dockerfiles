@@ -4,7 +4,10 @@
     automaticallyUpdate: false
     disabledPackages: [
       "metrics"
+      "about"
+      "welcome"
     ]
+    telemetryConsent: "no"
     themes: [
       "one-light-ui"
       "solarized-light-syntax"

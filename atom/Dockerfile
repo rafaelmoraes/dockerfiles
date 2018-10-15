@@ -75,4 +75,4 @@ RUN curl -o /etc/fonts/local.conf \
 RUN sh -c 'fc-cache -vf /root/.local/share/fonts/'
 
 # Autorun atom
-CMD [ "atom", "--foreground" ]
+CMD [ "atom", "--foreground", "/development" ]

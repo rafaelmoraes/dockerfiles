@@ -2,6 +2,9 @@
   core:
     autoHideMenuBar: true
     automaticallyUpdate: false
+    disabledPackages: [
+      "metrics"
+    ]
     themes: [
       "one-light-ui"
       "solarized-light-syntax"

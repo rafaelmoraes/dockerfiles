@@ -83,4 +83,4 @@ RUN sh -c 'fc-cache -vf /home/developer/.local/share/fonts/'
 
 # Create code runable alternative
 RUN sh -c 'mv /usr/bin/code /usr/bin/vscode'
-RUN echo 'su - developer -c "vscode /development"' > /usr/bin/code && chmod +x /usr/bin/code
+RUN echo 'su - developer -c "vscode ${@:-/development}"' > /usr/bin/code && chmod +x /usr/bin/code

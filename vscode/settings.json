@@ -1,0 +1,41 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.docker_volumes": true
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.docker_volumes/**": true,
+        "**/tmp/**": true
+    },
+    "editor.wordWrap": "on",
+    "editor.find.autoFindInSelection": true,
+    "editor.minimap.enabled": false,
+    "editor.rulers": [
+        80
+    ],
+    "window.menuBarVisibility": "toggle",
+    "files.trimFinalNewlines": true,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "editor.tabSize": 2,
+    "window.zoomLevel": 0,
+    "workbench.iconTheme": "Monokai Classic Icons",
+    "workbench.colorTheme": "Solarized Dark",
+    "editor.tabCompletion": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.parameterHints.cycle": true,
+    "editor.fontFamily": "Roboto Mono for Powerline",
+    "terminal.integrated.cursorStyle": "line",
+    "workbench.startupEditor": "newUntitledFile"
+}

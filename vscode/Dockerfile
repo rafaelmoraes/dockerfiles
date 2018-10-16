@@ -78,6 +78,7 @@ RUN curl -fLo '/home/developer/.local/share/fonts/Roboto Mono for Powerline.ttf'
 	https://raw.githubusercontent.com/powerline/fonts/master/RobotoMono/Roboto%20Mono%20for%20Powerline.ttf
 RUN curl -o /etc/fonts/local.conf \
 	https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/vscode/local.conf
+RUN chown -R developer:developer /home/developer
 RUN sh -c 'fc-cache -vf /home/developer/.local/share/fonts/'
 
 # Create code runable alternative

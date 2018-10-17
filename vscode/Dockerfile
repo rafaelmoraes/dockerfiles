@@ -64,23 +64,19 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /development
 
-# Create user to run vscode
-RUN sh -c 'useradd -m developer'
-
 # # Configure Visual Studio Code
-RUN sh -c 'mkdir -p /home/developer/.config/Code/User'
-RUN curl -o /home/developer/.config/Code/User/settings.json \
+RUN sh -c 'mkdir -p /root/.config/Code/User'
+RUN curl -o /root/.config/Code/User/settings.json \
   https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/vscode/settings.json
 
 # Install font Roboto Mono for Powerline
-RUN sh -c 'mkdir -p /home/developer/.local/share/fonts'
-RUN curl -fLo '/home/developer/.local/share/fonts/Roboto Mono for Powerline.ttf' \
+RUN sh -c 'mkdir -p /root/.local/share/fonts'
+RUN curl -fLo '/root/.local/share/fonts/Roboto Mono for Powerline.ttf' \
 	https://raw.githubusercontent.com/powerline/fonts/master/RobotoMono/Roboto%20Mono%20for%20Powerline.ttf
 RUN curl -o /etc/fonts/local.conf \
 	https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/vscode/local.conf
-RUN chown -R developer:developer /home/developer
-RUN sh -c 'fc-cache -vf /home/developer/.local/share/fonts/'
+RUN sh -c 'fc-cache -vf /root/.local/share/fonts/'
 
 # Create code runable alternative
 RUN sh -c 'mv /usr/bin/code /usr/bin/vscode'
-RUN echo 'su - developer -c "vscode ${@:-/development}"' > /usr/bin/code && chmod +x /usr/bin/code
+RUN echo 'vscode --user-data-dir /root/.config/Code $@' > /usr/bin/code && chmod +x /usr/bin/code

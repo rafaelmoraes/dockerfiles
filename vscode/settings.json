@@ -26,9 +26,8 @@
     "files.insertFinalNewline": true,
     "editor.tabSize": 2,
     "window.zoomLevel": 0,
-    "workbench.iconTheme": "Monokai Classic Icons",
-    "workbench.colorTheme": "Solarized Dark",
-    "editor.tabCompletion": true,
+    "workbench.colorTheme": "Solarized Light",
+    "editor.tabCompletion": "on",
     "editor.quickSuggestions": {
         "other": true,
         "comments": true,

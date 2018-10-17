@@ -21,7 +21,7 @@ FROM rmoraes/atom:v1
 #     -e DISPLAY=unix$DISPLAY <image_name>
 #
 
-LABEL maintainer="Rafael Moraes <roliveira.moraes@gmail.com>"
+LABEL maintainer='Rafael Moraes <roliveira.moraes@gmail.com>'
 
 # Set debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
@@ -42,16 +42,15 @@ COPY .ruby-version /tmp
 COPY . /tmp/app
 
 # Maintains bash history
-RUN su -c 'echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc'
-RUN su -c 'echo "cd /development" >> ~/.bashrc'
+RUN echo 'export HISTFILE=/dot_files/.bash_history' >> ~/.bashrc
+RUN echo 'cd /development' >> ~/.bashrc
 
 # Install rails
-RUN curl -o /tmp/app/install_rails.sh \
-    https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh
-RUN su -c 'chmod +x /tmp/app/install_rails.sh && cd /tmp/app && ./install_rails.sh'
+RUN sh -c "cd /tmp/app && \
+  $(curl -fsSL https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh)"
 
 # Fix rubocop path to atom extension
-RUN su -c 'ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop'
+RUN ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop
 
 #Cleanup
-RUN su -c 'rm -rf /var/lib/apt/lists/*'
+RUN rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*

@@ -62,17 +62,12 @@ RUN apt-get update && apt-get install -y \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Configure Atom
-RUN sh -c 'mkdir /root/.atom'
+RUN mkdir /root/.atom
 RUN curl -o /root/.atom/config.cson \
   https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/atom/config.cson
 
 # Install font Roboto Mono for Powerline
-RUN sh -c 'mkdir -p /root/.local/share/fonts'
-RUN curl -fLo '/root/.local/share/fonts/Roboto Mono for Powerline.ttf' \
-	https://raw.githubusercontent.com/powerline/fonts/master/RobotoMono/Roboto%20Mono%20for%20Powerline.ttf
-RUN curl -o /etc/fonts/local.conf \
-	https://raw.githubusercontent.com/rafaelmoraes/dockerfiles/master/atom/local.conf
-RUN sh -c 'fc-cache -vf /root/.local/share/fonts/'
+RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_font_roboto_mono_for_powerline.sh)"
 
 # Autorun atom
 CMD [ "atom", "--foreground", "/development" ]

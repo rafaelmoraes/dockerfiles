@@ -19,20 +19,11 @@ FROM rmoraes/vscode:v1
 #     -v /tmp/.X11-unix:/tmp/.X11-unix \
 #     -w /development \
 #     -e DISPLAY=unix$DISPLAY <image_name>
-#
 
 LABEL maintainer="Rafael Moraes <roliveira.moraes@gmail.com>"
 
 # Set debconf to run in non-interactive mode
 ENV DEBIAN_FRONTEND noninteractive
-
-# Get ruby on rails dependencies
-COPY .ruby-version /tmp
-COPY . /tmp/app
-
-# Maintains bash history
-RUN echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc
-RUN echo "cd /development" >> ~/.bashrc
 
 # Install vscode extensions
 RUN code --install-extension anseki.vscode-color
@@ -48,10 +39,19 @@ RUN code --install-extension wayou.vscode-todo-highlight
 RUN code --install-extension wmaurer.change-case
 RUN code --install-extension ZneuRay.erb-vscode-snippets
 
-# Install rails
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh)"
+# Get ruby on rails dependencies
+COPY .ruby-version /tmp
+COPY . /tmp/app
 
-# # Fix rubocop and solargraph path
+# Maintains bash history
+RUN echo "export HISTFILE=/dot_files/.bash_history" >> ~/.bashrc
+RUN echo "cd /development" >> ~/.bashrc
+
+# Install rails
+RUN sh -c "cd /tmp/app && \
+    $(curl -fsSL https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_ruby_on_rails.sh)"
+
+# Fix rubocop and solargraph path
 RUN ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop
 RUN ln -s /root/.rbenv/shims/solargraph /usr/bin/solargraph
 

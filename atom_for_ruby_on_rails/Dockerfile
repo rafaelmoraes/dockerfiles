@@ -52,5 +52,9 @@ RUN sh -c "cd /tmp/app && \
 # Fix rubocop path to atom extension
 RUN ln -s /root/.rbenv/shims/rubocop /usr/bin/rubocop
 
+#Install firefox and geckodriver to support the system tests
+RUN sh -c "cd /tmp/app && \
+  $(curl -fsSL https://raw.githubusercontent.com/rafaelmoraes/shell_scripts/master/debian/installers/install_firefox_esr_with_geckodriver.sh)"
+
 #Cleanup
 RUN rm -rf /var/lib/apt/lists/* && rm -rf /tmp/*

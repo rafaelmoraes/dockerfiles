@@ -12,7 +12,7 @@ FROM debian:stable-slim
 #   # Maybe you need run 'xhost local:root' before run the container
 #
 #   # Run the container
-#   docker -it run --rm \
+#   docker run -it --rm \
 #     -v `pwd`:/development:rw \
 #     -v /tmp/.X11-unix:/tmp/.X11-unix \
 #     -w /development \
@@ -42,7 +42,7 @@ RUN sh -c 'install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/'
 RUN echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list
 
 # Install dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
 	code \
 	git \
 	gconf2 \

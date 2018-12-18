@@ -1,4 +1,4 @@
-FROM rmoraes/atom:v1
+FROM rmoraes/atom:latest
 # URL of base image dockerfile
 # https://github.com/rafaelmoraes/dockerfiles/tree/master/atom
 
@@ -38,7 +38,7 @@ RUN apm install \
   ruby-block \
   ruby-solargraph
 
-COPY .ruby-version /tmp
+# COPY .ruby-version /tmp
 COPY . /tmp/app
 
 # Maintains bash history
